@@ -4,7 +4,7 @@ Donate link: http://buynowshop.com
 Tags: widget, footer, admin
 Requires at least: 2.9
 Tested up to: 2.9.1
-Stable tag: 0.1
+Stable tag: 0.1.1
 
 Add a widget area to the footer of any theme.
 
@@ -48,11 +48,20 @@ The plugin uses the register_sidebar() WordPress function; additional classes ar
 1. The new blank widget area
 
 == Other Notes ==
-* The CSS, XHTML and design is released under GPL: http://www.opensource.org/licenses/gpl-license.php
+* Copyright 2009, 2010 Edward Caissie 
+
+This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 2 of the License, or (at your option) any later version.
+ 
+This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+ 
+You should have received a copy of the GNU General Public License along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 == Upgrade Notice ==
 * Initial release.
 
 == Changelog ==
+= 0.1.1 =
+* clarified the plugin's release under a GPL license
+
 = 0.1 =
 * Initial release.
