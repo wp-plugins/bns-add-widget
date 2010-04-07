@@ -3,7 +3,7 @@
 Plugin Name: BNS Add Widget
 Plugin URI: http://buynowshop.com/plugins/bns-add-widget
 Description: Add a widget area to the footer of any theme.
-Version: 0.1.2
+Version: 0.2
 Author: Edward Caissie
 Author URI: http://edwardcaissie.com/
 License: GPL2
@@ -12,8 +12,10 @@ License: GPL2
 /*  Copyright 2010  Edward Caissie  (email : edward.caissie@gmail.com)
 
     This program is free software; you can redistribute it and/or modify
-    it under the terms of the GNU General Public License, version 2, as
-    published by the Free Software Foundation.
+    it under the terms of the GNU General Public License version 2,
+    as published by the Free Software Foundation.
+
+    You may NOT assume that you can use any other version of the GPL.
 
     This program is distributed in the hope that it will be useful,
     but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -23,6 +25,9 @@ License: GPL2
     You should have received a copy of the GNU General Public License
     along with this program; if not, write to the Free Software
     Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
+
+    The license for this software can also likely be found here:
+    http://www.gnu.org/licenses/gpl-2.0.html
 */
 
 global $wp_version;
@@ -40,12 +45,10 @@ function add_BNS_Add_Widget_Code() {
       'id' => 'bns-add-widget',
       'before_widget' => '
         <div class="bns-add-widget">
-          <div class="bns-widget-before"></div>
-          <div class="bns-widget-content">',
+          <div id="%1$s" class="widget %2$s">',
           
       'after_widget' => '
-          </div><!-- .bns-widget-content -->
-          <div class="bns-widget-after"></div>
+          </div><!-- #%1$s .widget .%2$s -->
         </div><!-- .bns-add-widget -->',
       'before_title' => '<h2 class="bns-widget-title">',
       'after_title' => '</h2>',
