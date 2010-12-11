@@ -3,11 +3,14 @@
 Plugin Name: BNS Add Widget
 Plugin URI: http://buynowshop.com/plugins/bns-add-widget
 Description: Add a widget area to the footer of any theme.
-Version: 0.2
+Version: 0.2.1
 Author: Edward Caissie
 Author URI: http://edwardcaissie.com/
 License: GPL2
+License URI: http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
 */
+
+/* Last Updated: December 12, 2010 v0.2.1 */
 
 /*  Copyright 2010  Edward Caissie  (email : edward.caissie@gmail.com)
 
@@ -29,7 +32,6 @@ License: GPL2
     The license for this software can also likely be found here:
     http://www.gnu.org/licenses/gpl-2.0.html
 */
-
 global $wp_version;
 $exit_message = 'BNS Add Widget requires WordPress version 2.9 or newer. <a href="http://codex.wordpress.org/Upgrading_WordPress">Please Update!</a>';
 if (version_compare($wp_version, "2.9", "<")) {

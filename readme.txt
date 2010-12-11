@@ -3,8 +3,8 @@ Contributors: cais
 Donate link: http://buynowshop.com
 Tags: widget, footer, admin
 Requires at least: 2.9
-Tested up to: 3.0
-Stable tag: 0.2
+Tested up to: 3.1
+Stable tag: 0.2.1
 
 Add a widget area to the footer of any theme.
 
@@ -69,6 +69,9 @@ The plugin uses the register_sidebar() WordPress function; additional classes ar
 * Please stay current with your WordPress installation, your active theme, and your plugins.
 
 == Changelog ==
+= 0.2.1 =
+* Confirm compatible with WordPress 3.1 (beta)
+
 = 0.2 =
 * compatible with WordPress version 3.0
 * cleaned up CSS elements to better match WordPress default widget code
