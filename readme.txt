@@ -2,9 +2,9 @@
 Contributors: cais
 Donate link: http://buynowshop.com
 Tags: widget, footer, admin
-Requires at least: 2.2
-Tested up to: 3.2
-Stable tag: 0.3
+Requires at least: 2.7
+Tested up to: 3.3
+Stable tag: 0.4
 
 Add a widget area to the footer of any theme.
 
@@ -41,8 +41,9 @@ Please note, support may be available on the WordPress Support forums; but, it m
 
 The plugin uses the register_sidebar() WordPress function; additional classes are added via the plugin code:
 
-* bns-add-widget
+* .bns-add-widget
 * h2.bns-widget-title
+* .bnsaw-credit
 
 == Screenshots ==
 
@@ -73,6 +74,17 @@ The plugin uses the register_sidebar() WordPress function; additional classes ar
 * Please stay current with your WordPress installation, your active theme, and your plugins.
 
 == Changelog ==
+= 0.4 =
+* released ...
+* confirmed compatible with WordPress 3.3
+* added phpDoc Style documentation
+* added i18n support
+* added `bnsaw-style.css` for plugin specific elements
+* added conditional enqueue of `bnsaw-custom-style.css` stylesheet for end-user modifications
+* added `description` parameter to widget area definition
+* added additional style for widget area
+* updated required WordPress version to 2.7
+
 = 0.3 =
 * confirmed compatible with WordPress version 3.2-beta2-18055
 * removed conditionals checking for *_sidebar functions
@@ -90,7 +102,7 @@ The plugin uses the register_sidebar() WordPress function; additional classes ar
 * updated license declaration
 
 = 0.1.1 =
-* clarified the plugin's release under a GPL license
+* clarified the plugin is released under a GPL-compatible license
 
 = 0.1 =
 * Initial release.
