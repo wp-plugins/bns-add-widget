@@ -3,14 +3,16 @@ Contributors: cais
 Donate link: http://buynowshop.com
 Tags: widget, footer, admin
 Requires at least: 2.7
-Tested up to: 3.4
-Stable tag: 0.4.1
+Tested up to: 3.4.1
+Stable tag: 0.4.2
+License: GNU General Public License v2
+License URI: http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
 
 Add a widget area to the footer of any theme.
 
 == Description ==
 
-Add a widget area to the footer of any theme. Works just like the widget areas commonly created with code in the functions.php template file.
+Add a widget area to the footer of any theme by way of the `wp_footer` action hook. Works just like the widget areas commonly created with code in the functions.php template file.
 
 == Installation ==
 
@@ -74,6 +76,11 @@ The plugin uses the register_sidebar() WordPress function; additional classes ar
 * Please stay current with your WordPress installation, your active theme, and your plugins.
 
 == Changelog ==
+= 0.4.2 =
+* Documentation updates
+* Updated long description
+* Added license references to 'readme.txt' header section
+
 = 0.4.1 =
 * confirmed compatible with WordPress 3.4
 
