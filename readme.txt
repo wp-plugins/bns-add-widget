@@ -1,10 +1,10 @@
 === BNS Add Widget ===
 Contributors: cais
 Donate link: http://buynowshop.com
-Tags: widget, footer, admin
+Tags: widget, footer, admin, plugin-only
 Requires at least: 2.7
-Tested up to: 3.4.1
-Stable tag: 0.4.2
+Tested up to: 3.5-alpha
+Stable tag: 0.4.3
 License: GNU General Public License v2
 License URI: http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
 
@@ -37,7 +37,10 @@ This section describes how to install the plugin and get it working.
 
 = How can I get support for this plugin? =
 
-Please note, support may be available on the WordPress Support forums; but, it may be faster to visit http://buynowshop.com/plugins/bns-add-widget/ and leave a comment with the issue you are experiencing.
+Please note, support may be available on the WordPress Support forums; but, it may be faster to visit:
+
+* https://github.com/Cais/bns-add-widget/issues/
+* http://buynowshop.com/plugins/bns-add-widget/
 
 = How can I style the plugin output? =
 
@@ -76,6 +79,10 @@ The plugin uses the register_sidebar() WordPress function; additional classes ar
 * Please stay current with your WordPress installation, your active theme, and your plugins.
 
 == Changelog ==
+= 0.4.3 =
+* Set stylesheet versions to dynamically match the plugin version
+* 'readme.txt' updates
+
 = 0.4.2 =
 * Documentation updates
 * Updated long description

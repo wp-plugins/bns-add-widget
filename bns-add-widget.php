@@ -3,7 +3,7 @@
 Plugin Name: BNS Add Widget
 Plugin URI: http://buynowshop.com/plugins/bns-add-widget
 Description: Add a widget area to the footer of any theme.
-Version: 0.4.2
+Version: 0.4.3
 Author: Edward Caissie
 Author URI: http://edwardcaissie.com/
 Textdomain: bns-aw
@@ -90,16 +90,23 @@ load_plugin_textdomain( 'bns-aw' );
  * @package BNS_Add_Widget
  * @since   0.4
  *
+ * @uses    get_plugin_data
  * @uses    plugin_dir_path
  * @uses    plugin_dir_url
  * @uses    wp_enqueue_style
+ *
+ * @version 0.4.3
+ * @date    September 12, 2012
+ * Set versions to dynamically match the plugin version
  */
 function BNSAW_Scripts_and_Styles() {
+    require_once( ABSPATH . 'wp-admin/includes/plugin.php' );
+    $bns_aw_data = get_plugin_data( __FILE__ );
     /** Enqueue Scripts */
     /** Enqueue Style Sheets */
-    wp_enqueue_style( 'BNSAW-Style', plugin_dir_url( __FILE__ ) . 'bnsaw-style.css', array(), '0.4', 'screen' );
-    if ( is_readable( plugin_dir_path( __FILE__ ) . 'bnsaw-custom-style.css' ) ) { // Only enqueue if available
-        wp_enqueue_style( 'BNSAW-Custom-Style', plugin_dir_url( __FILE__ ) . 'bnsaw-custom-style.css', array(), '0.4', 'screen' );
+    wp_enqueue_style( 'BNSAW-Style', plugin_dir_url( __FILE__ ) . 'bnsaw-style.css', array(), $bns_aw_data['Version'], 'screen' );
+    if ( is_readable( plugin_dir_path( __FILE__ ) . 'bnsaw-custom-style.css' ) ) { /** Only enqueue if available */
+        wp_enqueue_style( 'BNSAW-Custom-Style', plugin_dir_url( __FILE__ ) . 'bnsaw-custom-style.css', array(), $bns_aw_data['Version'], 'screen' );
     }
 }
 add_action( 'wp_enqueue_scripts', 'BNSAW_Scripts_and_Styles' );
