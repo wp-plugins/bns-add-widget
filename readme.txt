@@ -4,7 +4,7 @@ Donate link: http://buynowshop.com
 Tags: widget, footer, admin, plugin-only
 Requires at least: 2.7
 Tested up to: 3.5-alpha
-Stable tag: 0.4.3
+Stable tag: 0.5
 License: GNU General Public License v2
 License URI: http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
 
@@ -79,6 +79,10 @@ The plugin uses the register_sidebar() WordPress function; additional classes ar
 * Please stay current with your WordPress installation, your active theme, and your plugins.
 
 == Changelog ==
+= 0.5 =
+* Implemented OOP style coding methods
+* Documentation improvements
+
 = 0.4.3 =
 * Set stylesheet versions to dynamically match the plugin version
 * 'readme.txt' updates
