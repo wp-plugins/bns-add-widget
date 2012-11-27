@@ -3,7 +3,7 @@
 Plugin Name: BNS Add Widget
 Plugin URI: http://buynowshop.com/plugins/bns-add-widget
 Description: Add a widget area to the footer of any theme.
-Version: 0.5
+Version: 0.6
 Author: Edward Caissie
 Author URI: http://edwardcaissie.com/
 Text Domain: bns-aw
@@ -21,7 +21,7 @@ License URI: http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
  * @link        http://buynowshop.com/plugins/bns-add-widget/
  * @link        https://github.com/Cais/bns-add-widget/
  * @link        http://wordpress.org/extend/plugins/bns-add-widget/
- * @version     0.5
+ * @version     0.6
  * @author      Edward Caissie <edward.caissie@gmail.com>
  * @copyright   Copyright (c) 2010-2012, Edward Caissie
  *
@@ -48,6 +48,10 @@ License URI: http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
  * @version 0.5
  * @date    September 18, 2012
  * Implemented OOP style coding methods
+ *
+ * @version 0.6
+ * @date    November 26, 2012
+ * Removed load_plugin_textdomain as redundant
  */
 
 class BNS_Add_Widget {
@@ -66,27 +70,13 @@ class BNS_Add_Widget {
          *
          * @version 0.4
          * @date    November 14, 2011.
-         * @internal Version 2.7 being used in reference to the `load_plugin_textdomain`
+         * @internal Version 2.7 being used in reference to the textdomain
          */
         global $wp_version;
         $exit_message = 'BNS Add Widget requires WordPress version 2.7 or newer. <a href="http://codex.wordpress.org/Upgrading_WordPress">Please Update!</a>';
         if ( version_compare( $wp_version, "2.7", "<" ) ) {
             exit ( $exit_message );
         }
-
-        /**
-         * BNS Add Widget TextDomain
-         * Make plugin text available for translation (i18n)
-         *
-         * @package:    BNS_Add_Widget
-         * @since:      0.4
-         *
-         * @internal Translation files are expected to be found in the plugin
-         * root folder / directory.
-         * @internal `bns-aw` is being used in place of `bns-add-widget`
-         * @internal see designation in plugin header for Text Domain
-         */
-        load_plugin_textdomain( 'bns-aw' );
 
         /** Enqueue Scripts and Styles */
         add_action( 'wp_enqueue_scripts', array( $this, 'BNSAW_Scripts_and_Styles' ) );
@@ -158,16 +148,18 @@ class BNS_Add_Widget {
      * @package BNS_Add_Widget
      * @since   0.1
      *
+     * @uses    apply_filters
      * @uses    dynamic_sidebar
      * @internal REQUIRES `wp_footer` action hook to be available
      *
-     * @version 0.4
-     * @date    November 14, 2011
+     * @version 0.6
+     * @date    November 26, 2012
+     * Added filter hook and CSS wrapper to text
      */
     function BNS_Add_Widget_Hook() { ?>
         <div class="bnsaw-credit">
             <?php if ( dynamic_sidebar( 'bns-add-widget' ) ) : else :
-                printf( __( 'You are using the %1$s plugin. Thank You!', 'bns-aw' ), '<a href="http://buynowshop.com/plugins/bns-add-widget/">BNS Add Widget</a>' );
+                echo apply_filters( 'bnsaw_credit_text', sprintf( '<span class="bnsaw-credit-text">%1$s</span>', __( 'You are using the %1$s plugin. Thank You!', 'bns-aw' ), '<a href="http://buynowshop.com/plugins/bns-add-widget/">BNS Add Widget</a>' ) );
             endif; ?>
         </div>
     <?php }

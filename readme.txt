@@ -3,8 +3,8 @@ Contributors: cais
 Donate link: http://buynowshop.com
 Tags: widget, footer, admin, plugin-only
 Requires at least: 2.7
-Tested up to: 3.5-alpha
-Stable tag: 0.5
+Tested up to: 3.5
+Stable tag: 0.6
 License: GNU General Public License v2
 License URI: http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
 
@@ -79,6 +79,11 @@ The plugin uses the register_sidebar() WordPress function; additional classes ar
 * Please stay current with your WordPress installation, your active theme, and your plugins.
 
 == Changelog ==
+= 0.6 =
+* Release November 2012
+* Added filter hook and CSS wrapper to credit text
+* Removed load_plugin_textdomain as redundant
+
 = 0.5 =
 * Implemented OOP style coding methods
 * Documentation improvements
