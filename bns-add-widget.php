@@ -3,7 +3,7 @@
 Plugin Name: BNS Add Widget
 Plugin URI: http://buynowshop.com/plugins/bns-add-widget
 Description: Add a widget area to the footer of any theme.
-Version: 0.6
+Version: 0.6.1
 Author: Edward Caissie
 Author URI: http://edwardcaissie.com/
 Text Domain: bns-aw
@@ -21,9 +21,9 @@ License URI: http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
  * @link        http://buynowshop.com/plugins/bns-add-widget/
  * @link        https://github.com/Cais/bns-add-widget/
  * @link        http://wordpress.org/extend/plugins/bns-add-widget/
- * @version     0.6
+ * @version     0.6.1
  * @author      Edward Caissie <edward.caissie@gmail.com>
- * @copyright   Copyright (c) 2010-2012, Edward Caissie
+ * @copyright   Copyright (c) 2010-2013, Edward Caissie
  *
  * This program is free software; you can redistribute it and/or modify it under
  * the terms of the GNU General Public License version 2, as published by the
@@ -45,13 +45,13 @@ License URI: http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
  * The license for this software can also likely be found here:
  * http://www.gnu.org/licenses/gpl-2.0.html
  *
- * @version 0.5
- * @date    September 18, 2012
- * Implemented OOP style coding methods
- *
  * @version 0.6
  * @date    November 26, 2012
  * Removed load_plugin_textdomain as redundant
+ *
+ * @version 0.6.1
+ * @date    February 12, 2013
+ * Documentation and comments
  */
 
 class BNS_Add_Widget {
@@ -76,7 +76,7 @@ class BNS_Add_Widget {
         $exit_message = 'BNS Add Widget requires WordPress version 2.7 or newer. <a href="http://codex.wordpress.org/Upgrading_WordPress">Please Update!</a>';
         if ( version_compare( $wp_version, "2.7", "<" ) ) {
             exit ( $exit_message );
-        }
+        } /** End if - version compare */
 
         /** Enqueue Scripts and Styles */
         add_action( 'wp_enqueue_scripts', array( $this, 'BNSAW_Scripts_and_Styles' ) );
@@ -92,7 +92,8 @@ class BNS_Add_Widget {
 
     /**
      * Enqueue Plugin Scripts and Styles
-     * Adds plugin stylesheet and allows for custom stylesheet to be added by end-user.
+     * Adds plugin stylesheet and allows for custom stylesheet to be added by
+     * end-user.
      *
      * @package BNS_Add_Widget
      * @since   0.4
@@ -114,8 +115,9 @@ class BNS_Add_Widget {
         wp_enqueue_style( 'BNSAW-Style', plugin_dir_url( __FILE__ ) . 'bnsaw-style.css', array(), $bns_aw_data['Version'], 'screen' );
         if ( is_readable( plugin_dir_path( __FILE__ ) . 'bnsaw-custom-style.css' ) ) { /** Only enqueue if available */
             wp_enqueue_style( 'BNSAW-Custom-Style', plugin_dir_url( __FILE__ ) . 'bnsaw-custom-style.css', array(), $bns_aw_data['Version'], 'screen' );
-        }
-    }
+        } /** End if - is readable */
+    } /** End function - scripts and styles */
+
 
     /**
      * BNS Add Widget
@@ -139,7 +141,8 @@ class BNS_Add_Widget {
             'before_title'   => '<h2 class="bns-add-widget-title">',
             'after_title'    => '</h2>',
         ) );
-    }
+    } /** End function - add widget definition */
+
 
     /**
      * BNS Add Widget Hook
@@ -155,16 +158,22 @@ class BNS_Add_Widget {
      * @version 0.6
      * @date    November 26, 2012
      * Added filter hook and CSS wrapper to text
+     *
+     * @version 0.6.1
+     * @date    February 13, 2013
+     * Fixed misread token issue
      */
     function BNS_Add_Widget_Hook() { ?>
         <div class="bnsaw-credit">
-            <?php if ( dynamic_sidebar( 'bns-add-widget' ) ) : else :
-                echo apply_filters( 'bnsaw_credit_text', sprintf( '<span class="bnsaw-credit-text">%1$s</span>', __( 'You are using the %1$s plugin. Thank You!', 'bns-aw' ), '<a href="http://buynowshop.com/plugins/bns-add-widget/">BNS Add Widget</a>' ) );
-            endif; ?>
+            <?php
+            if ( ! dynamic_sidebar( 'bns-add-widget' ) ) {
+                echo apply_filters( 'bnsaw_credit_text', sprintf( '<span class="bnsaw-credit-text">%1$s</span>', sprintf( __( 'You are using the %1$s plugin. Thank You!', 'bns-aw' ), '<a href="http://buynowshop.com/plugins/bns-add-widget/">BNS Add Widget</a>' ) ) );
+            } /** End if - not dynamic widget */ ?>
         </div>
-    <?php }
+    <?php } /** End function - add widget hook */
 
-}
+} /** End class */
+
 
 /** @var $bns_add_widget - new instance of the class */
 $bns_add_widget = new BNS_Add_Widget();
