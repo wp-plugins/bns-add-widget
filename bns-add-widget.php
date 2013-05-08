@@ -3,7 +3,7 @@
 Plugin Name: BNS Add Widget
 Plugin URI: http://buynowshop.com/plugins/bns-add-widget
 Description: Add a widget area to the footer of any theme.
-Version: 0.6.1
+Version: 0.6.2
 Author: Edward Caissie
 Author URI: http://edwardcaissie.com/
 Text Domain: bns-aw
@@ -21,7 +21,7 @@ License URI: http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
  * @link        http://buynowshop.com/plugins/bns-add-widget/
  * @link        https://github.com/Cais/bns-add-widget/
  * @link        http://wordpress.org/extend/plugins/bns-add-widget/
- * @version     0.6.1
+ * @version     0.6.2
  * @author      Edward Caissie <edward.caissie@gmail.com>
  * @copyright   Copyright (c) 2010-2013, Edward Caissie
  *
@@ -52,6 +52,10 @@ License URI: http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
  * @version 0.6.1
  * @date    February 12, 2013
  * Documentation and comments
+ *
+ * @version 0.6.2
+ * @date    May 6, 2013
+ * Version number compatibility updates
  */
 
 class BNS_Add_Widget {
