@@ -3,7 +3,7 @@
 Plugin Name: BNS Add Widget
 Plugin URI: http://buynowshop.com/plugins/bns-add-widget
 Description: Add a widget area to the footer of any theme.
-Version: 0.6.3
+Version: 0.7
 Author: Edward Caissie
 Author URI: http://edwardcaissie.com/
 Text Domain: bns-aw
@@ -17,13 +17,13 @@ License URI: http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
  * Add a widget area to the footer of any theme. Works just like the widget
  * areas commonly created with code in the functions.php template file.
  *
- * @package     BNS_Add_Widget
- * @link        http://buynowshop.com/plugins/bns-add-widget/
- * @link        https://github.com/Cais/bns-add-widget/
- * @link        http://wordpress.org/extend/plugins/bns-add-widget/
- * @version     0.6.3
- * @author      Edward Caissie <edward.caissie@gmail.com>
- * @copyright   Copyright (c) 2010-2013, Edward Caissie
+ * @package        BNS_Add_Widget
+ * @link           http://buynowshop.com/plugins/bns-add-widget/
+ * @link           https://github.com/Cais/bns-add-widget/
+ * @link           http://wordpress.org/extend/plugins/bns-add-widget/
+ * @version        0.7
+ * @author         Edward Caissie <edward.caissie@gmail.com>
+ * @copyright      Copyright (c) 2010-2014, Edward Caissie
  *
  * This program is free software; you can redistribute it and/or modify it under
  * the terms of the GNU General Public License version 2, as published by the
@@ -45,22 +45,24 @@ License URI: http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
  * The license for this software can also likely be found here:
  * http://www.gnu.org/licenses/gpl-2.0.html
  *
- * @version     0.6
- * @date        November 26, 2012
+ * @version        0.6
+ * @date           November 26, 2012
  * Removed load_plugin_textdomain as redundant
  *
- * @version     0.6.1
- * @date        February 12, 2013
+ * @version        0.6.1
+ * @date           February 12, 2013
  * Documentation and comments
  *
- * @version     0.6.2
- * @date        May 6, 2013
+ * @version        0.6.2
+ * @date           May 6, 2013
  * Version number compatibility updates
  *
- * @version		0.6.3
- * @date		December 2013
+ * @version        0.6.3
+ * @date           December 2013
+ *
+ * @version        0.7
+ * @date           April 25, 2014
  */
-
 class BNS_Add_Widget {
 	/**
 	 * Constructor
@@ -87,7 +89,12 @@ class BNS_Add_Widget {
 		/** End if - version compare */
 
 		/** Enqueue Scripts and Styles */
-		add_action( 'wp_enqueue_scripts', array( $this, 'BNSAW_Scripts_and_Styles' ) );
+		add_action(
+			'wp_enqueue_scripts', array(
+				$this,
+				'BNSAW_Scripts_and_Styles'
+			)
+		);
 
 		/** Add Widget Definition */
 		add_action( 'init', array( $this, 'BNS_Add_Widget_Definition' ) );
@@ -145,15 +152,17 @@ class BNS_Add_Widget {
 	 * @date    November 14, 2011
 	 */
 	function BNS_Add_Widget_Definition() {
-		register_sidebar( array(
-			'name'          => __( 'BNS Add Widget', 'bns-aw' ),
-			'id'            => 'bns-add-widget',
-			'description'   => __( 'This widget area will generally be found at the bottom of the page in the theme footer area.', 'bns-aw' ),
-			'before_widget' => '<div class="bns-add-widget"><div id="%1$s" class="widget %2$s">',
-			'after_widget'  => '</div><!-- #%1$s .widget .%2$s --></div><!-- .bns-add-widget -->',
-			'before_title'  => '<h2 class="bns-add-widget-title">',
-			'after_title'   => '</h2>',
-		) );
+		register_sidebar(
+			array(
+				'name'          => __( 'BNS Add Widget', 'bns-aw' ),
+				'id'            => 'bns-add-widget',
+				'description'   => __( 'This widget area will generally be found at the bottom of the page in the theme footer area.', 'bns-aw' ),
+				'before_widget' => '<div class="bns-add-widget"><div id="%1$s" class="widget %2$s">',
+				'after_widget'  => '</div><!-- #%1$s .widget .%2$s --></div><!-- .bns-add-widget -->',
+				'before_title'  => '<h2 class="bns-add-widget-title">',
+				'after_title'   => '</h2>',
+			)
+		);
 	}
 
 	/** End function - add widget definition */
