@@ -3,10 +3,10 @@
 Plugin Name: BNS Add Widget
 Plugin URI: http://buynowshop.com/plugins/bns-add-widget
 Description: Add a widget area to the footer of any theme.
-Version: 0.7
+Version: 0.8
 Author: Edward Caissie
 Author URI: http://edwardcaissie.com/
-Text Domain: bns-aw
+Text Domain: bns-add-widget
 License: GNU General Public License v2
 License URI: http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
 */
@@ -20,10 +20,10 @@ License URI: http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
  * @package        BNS_Add_Widget
  * @link           http://buynowshop.com/plugins/bns-add-widget/
  * @link           https://github.com/Cais/bns-add-widget/
- * @link           http://wordpress.org/extend/plugins/bns-add-widget/
- * @version        0.7
+ * @link           https://wordpress.org/plugins/bns-add-widget/
+ * @version        0.8
  * @author         Edward Caissie <edward.caissie@gmail.com>
- * @copyright      Copyright (c) 2010-2014, Edward Caissie
+ * @copyright      Copyright (c) 2010-2015, Edward Caissie
  *
  * This program is free software; you can redistribute it and/or modify it under
  * the terms of the GNU General Public License version 2, as published by the
@@ -44,49 +44,42 @@ License URI: http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
  *
  * The license for this software can also likely be found here:
  * http://www.gnu.org/licenses/gpl-2.0.html
- *
- * @version        0.6
- * @date           November 26, 2012
- * Removed load_plugin_textdomain as redundant
- *
- * @version        0.6.1
- * @date           February 12, 2013
- * Documentation and comments
- *
- * @version        0.6.2
- * @date           May 6, 2013
- * Version number compatibility updates
- *
- * @version        0.6.3
- * @date           December 2013
- *
- * @version        0.7
- * @date           April 25, 2014
  */
 class BNS_Add_Widget {
+
 	/**
 	 * Constructor
 	 * This is where the go-go juice is squeezed out of the code
 	 */
 	function __construct() {
+
 		/**
 		 * Check installed WordPress version for compatibility
 		 *
-		 * @package          BNS_Add_Widget
-		 * @since            0.1
+		 * @package     BNS_Add_Widget
+		 * @since       0.1
 		 *
-		 * @uses    (global) $wp_version
+		 * @uses        (global) $wp_version
+		 * @uses        __
+		 * @uses        load_plugin_textdomain
 		 *
-		 * @version          0.4
-		 * @date             November 14, 2011
-		 * @internal         Version 2.7 being used in reference to the textdomain
+		 * @version     0.4
+		 * @date        November 14, 2011
+		 * @internal    Version 2.7 being used in reference to the textdomain
+		 *
+		 * @version     0.8
+		 * @date        April 25, 2015
+		 * Corrected `$exit_message` to be i18n compatible
 		 */
 		global $wp_version;
-		$exit_message = 'BNS Add Widget requires WordPress version 2.7 or newer. <a href="http://codex.wordpress.org/Upgrading_WordPress">Please Update!</a>';
+		$exit_message = __( 'BNS Add Widget requires WordPress version 2.7 or newer.', 'bns-add-widget' );
+		$exit_message .= '<br /> ';
+		$exit_message .= sprintf( '<a href="http://codex.wordpress.org/Upgrading_WordPress">%1$s</a>', __( 'Please Update!', 'bns-add-widget' ) );
 		if ( version_compare( $wp_version, "2.7", "<" ) ) {
 			exit ( $exit_message );
 		}
-		/** End if - version compare */
+
+		load_plugin_textdomain( 'bns-add-widget' );
 
 		/** Enqueue Scripts and Styles */
 		add_action(
@@ -104,7 +97,6 @@ class BNS_Add_Widget {
 
 	}
 
-	/** End: Constructor ---------------------------------------------------- */
 
 	/**
 	 * Enqueue Plugin Scripts and Styles
@@ -124,8 +116,10 @@ class BNS_Add_Widget {
 	 * Set versions to dynamically match the plugin version
 	 */
 	function BNSAW_Scripts_and_Styles() {
+
 		require_once( ABSPATH . 'wp-admin/includes/plugin.php' );
 		$bns_aw_data = get_plugin_data( __FILE__ );
+
 		/** Enqueue Scripts */
 		/** Enqueue Style Sheets */
 		wp_enqueue_style( 'BNSAW-Style', plugin_dir_url( __FILE__ ) . 'bnsaw-style.css', array(), $bns_aw_data['Version'], 'screen' );
@@ -133,10 +127,8 @@ class BNS_Add_Widget {
 			/** Only enqueue if available */
 			wp_enqueue_style( 'BNSAW-Custom-Style', plugin_dir_url( __FILE__ ) . 'bnsaw-custom-style.css', array(), $bns_aw_data['Version'], 'screen' );
 		}
-		/** End if - is readable */
-	}
 
-	/** End function - scripts and styles */
+	}
 
 
 	/**
@@ -152,20 +144,20 @@ class BNS_Add_Widget {
 	 * @date    November 14, 2011
 	 */
 	function BNS_Add_Widget_Definition() {
+
 		register_sidebar(
 			array(
-				'name'          => __( 'BNS Add Widget', 'bns-aw' ),
+				'name'          => __( 'BNS Add Widget', 'bns-add-widget' ),
 				'id'            => 'bns-add-widget',
-				'description'   => __( 'This widget area will generally be found at the bottom of the page in the theme footer area.', 'bns-aw' ),
+				'description'   => __( 'This widget area will generally be found at the bottom of the page in the theme footer area.', 'bns-add-widget' ),
 				'before_widget' => '<div class="bns-add-widget"><div id="%1$s" class="widget %2$s">',
 				'after_widget'  => '</div><!-- #%1$s .widget .%2$s --></div><!-- .bns-add-widget -->',
 				'before_title'  => '<h2 class="bns-add-widget-title">',
 				'after_title'   => '</h2>',
 			)
 		);
-	}
 
-	/** End function - add widget definition */
+	}
 
 
 	/**
@@ -187,23 +179,139 @@ class BNS_Add_Widget {
 	 * @date     February 13, 2013
 	 * Fixed misread token issue
 	 */
-	function BNS_Add_Widget_Hook() {
-		?>
+	function BNS_Add_Widget_Hook() { ?>
+
 		<div class="bnsaw-credit">
 			<?php
 			if ( ! dynamic_sidebar( 'bns-add-widget' ) ) {
-				echo apply_filters( 'bnsaw_credit_text', sprintf( '<span class="bnsaw-credit-text">%1$s</span>', sprintf( __( 'You are using the %1$s plugin. Thank You!', 'bns-aw' ), '<a href="http://buynowshop.com/plugins/bns-add-widget/">BNS Add Widget</a>' ) ) );
+				echo apply_filters( 'bnsaw_credit_text', sprintf( '<span class="bnsaw-credit-text">%1$s</span>', sprintf( __( 'You are using the %1$s plugin. Thank You!', 'bns-add-widget' ), '<a href="http://buynowshop.com/plugins/bns-add-widget/">BNS Add Widget</a>' ) ) );
 			} /** End if - not dynamic widget */
 			?>
 		</div>
-	<?php
-	}
-	/** End function - add widget hook */
+
+	<?php }
 
 }
-
-/** End class */
 
 
 /** @var $bns_add_widget - new instance of the class */
 $bns_add_widget = new BNS_Add_Widget();
+
+
+/**
+ * BNS Add Widget Update Message
+ *
+ * @package BNS_Add_Widget
+ * @since   0.8
+ *
+ * @uses    get_transient
+ * @uses    is_wp_error
+ * @uses    set_transient
+ * @uses    wp_kses_post
+ * @uses    wp_remote_get
+ *
+ * @param $args
+ */
+function bnsft_in_plugin_update_message( $args ) {
+
+	require_once( ABSPATH . '/wp-admin/includes/plugin.php' );
+	$bnsaw_data = get_plugin_data( __FILE__ );
+
+	$transient_name = 'bnsaw_upgrade_notice_' . $args['Version'];
+	if ( false === ( $upgrade_notice = get_transient( $transient_name ) ) ) {
+
+		/** @var string $response - get the readme.txt file from WordPress */
+		$response = wp_remote_get( 'https://plugins.svn.wordpress.org/bns-add-widget/trunk/readme.txt' );
+
+		if ( ! is_wp_error( $response ) && ! empty( $response['body'] ) ) {
+			$matches = null;
+		}
+		$regexp         = '~==\s*Changelog\s*==\s*=\s*(.*)\s*=(.*)(=\s*' . preg_quote( $bnsaw_data['Version'] ) . '\s*=|$)~Uis';
+		$upgrade_notice = '';
+
+		if ( preg_match( $regexp, $response['body'], $matches ) ) {
+			$version = trim( $matches[1] );
+			$notices = (array) preg_split( '~[\r\n]+~', trim( $matches[2] ) );
+
+			if ( version_compare( $bnsaw_data['Version'], $version, '<' ) ) {
+
+				/** @var string $upgrade_notice - start building message (inline styles) */
+				$upgrade_notice = '<style type="text/css">
+							.bnsaw_plugin_upgrade_notice { padding-top: 20px; }
+							.bnsaw_plugin_upgrade_notice ul { width: 50%; list-style: disc; margin-left: 20px; margin-top: 0; }
+							.bnsaw_plugin_upgrade_notice li { margin: 0; }
+						</style>';
+
+				/** @var string $upgrade_notice - start building message (begin block) */
+				$upgrade_notice .= '<div class="bnsaw_plugin_upgrade_notice">';
+
+				$ul = false;
+
+				foreach ( $notices as $index => $line ) {
+
+					if ( preg_match( '~^=\s*(.*)\s*=$~i', $line ) ) {
+
+						if ( $ul ) {
+							$upgrade_notice .= '</ul><div style="clear: left;"></div>';
+						}
+						/** End if - unordered list created */
+
+						$upgrade_notice .= '<hr/>';
+						continue;
+
+					}
+					/** End if - non-blank line */
+
+					/** @var string $return_value - body of message */
+					$return_value = '';
+
+					if ( preg_match( '~^\s*\*\s*~', $line ) ) {
+
+						if ( ! $ul ) {
+							$return_value = '<ul">';
+							$ul           = true;
+						}
+						/** End if - unordered list not started */
+
+						$line = preg_replace( '~^\s*\*\s*~', '', htmlspecialchars( $line ) );
+						$return_value .= '<li style=" ' . ( $index % 2 == 0 ? 'clear: left;' : '' ) . '">' . $line . '</li>';
+
+					} else {
+
+						if ( $ul ) {
+							$return_value = '</ul><div style="clear: left;"></div>';
+							$return_value .= '<p>' . $line . '</p>';
+							$ul = false;
+						} else {
+							$return_value .= '<p>' . $line . '</p>';
+						}
+						/** End if - unordered list started */
+
+					}
+					/** End if - non-blank line */
+
+					$upgrade_notice .= wp_kses_post( preg_replace( '~\[([^\]]*)\]\(([^\)]*)\)~', '<a href="${2}">${1}</a>', $return_value ) );
+
+				}
+				/** End foreach - line parsing */
+
+				$upgrade_notice .= '</div>';
+
+			}
+			/** End if - version compare */
+
+		}
+		/** End if - response message exists */
+
+		/** Set transient - minimize calls to WordPress */
+		set_transient( $transient_name, $upgrade_notice, DAY_IN_SECONDS );
+
+	}
+	/** End if - transient check */
+
+	echo $upgrade_notice;
+
+}
+
+/** End function - in plugin update message */
+add_action( 'in_plugin_update_message-' . plugin_basename( __FILE__ ), 'bnsaw_in_plugin_update_message' );
